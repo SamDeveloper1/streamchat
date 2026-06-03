@@ -53,6 +53,9 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 // app.use("/api/users", userRoutes);
+app.get('/ping', (req, res) => {
+  res.status(200).send('ok');
+});
 
 // ─── Production: Serve Frontend Static Build ──────────────────────────────────
 
