@@ -13,7 +13,7 @@ const BASE_URL =
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
-  isCheckingAuth: true,
+  isCheckingAuth: false,
   isSigningUp: false,
   isLoggingIn: false,
   isUpdatingProfileImage: false,
@@ -22,6 +22,8 @@ export const useAuthStore = create((set, get) => ({
 
   checkAuth: async () => {
     try {
+       const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 1000);
       const res = await axiosInstance.get("/auth/check");
       set({ authUser: res.data });
       get().connectSocket();
